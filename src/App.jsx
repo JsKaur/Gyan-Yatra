@@ -1,9 +1,11 @@
 import "./app.css";
 import {useState} from "react";
 import Trivia from "./components/Trivia";
+import data from "./data.json";
 
 function App() {
   const [questionNumber, setQuestionNumber] = useState(1);
+  const [timeOut, setTimeOut]=useState(false);
 
   const moneyPyramid=[
     {id:1, amount:"$100"},
@@ -29,7 +31,10 @@ function App() {
         <div className="top">
           <div className="timer">30</div>
         </div>
-        <div className="bottom"><Trivia /></div>
+        <div className="bottom"><Trivia data={data}
+              questionNumber={questionNumber}
+              setQuestionNumber={setQuestionNumber}
+              setTimeOut={setTimeOut}/></div>
       </div>
 
 

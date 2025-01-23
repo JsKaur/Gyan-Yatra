@@ -1,0 +1,153 @@
+[
+    {
+      "id": 1,
+      "question": "What is the meaning of नमस्ते  'Namaste' in Sanskrit?",
+      "answers": [
+        { "text": "Hello", "correct": true },
+        { "text": "Goodbye", "correct": false },
+        { "text": "Thank you", "correct": false },
+        { "text": "Please", "correct": false }
+      ]
+    },
+    {
+      "id": 2,
+      "question": "Which of the following is a स्वराः 'Swara' (vowel) ?",
+      "answers": [
+        { "text": "क", "correct": false },
+        { "text": "आ", "correct": true },
+        { "text": "घ", "correct": false },
+        { "text": "ष", "correct": false }
+      ]
+    },
+    {
+      "id": 3,
+      "question": "What does शान्तिः 'Shanti' mean in Sanskrit?",
+      "answers": [
+        { "text": "Peace", "correct": true },
+        { "text": "Love", "correct": false },
+        { "text": "Happiness", "correct": false },
+        { "text": "Courage", "correct": false }
+      ]
+    },
+    {
+      "id": 4,
+      "question": "What is the Sanskrit word for 'teacher'?",
+      "answers": [
+        { "text": "शिक्षा", "correct": false },
+        { "text": "गुरु", "correct": true },
+        { "text": "ध्यान", "correct": false },
+        { "text": "शिष्य", "correct": false }
+      ]
+    },
+    {
+      "id": 5,
+      "question": "Which script is used to write Sanskrit?",
+      "answers": [
+        { "text": "Devanagari", "correct": true },
+        { "text": "Brahmi", "correct": false },
+        { "text": "Tamil", "correct": false },
+        { "text": "Greek", "correct": false }
+      ]
+    },
+    {
+      "id": 6,
+      "question": "What does विद्या 'Vidya' mean in Sanskrit?",
+      "answers": [
+        { "text": "Knowledge", "correct": true },
+        { "text": "Wealth", "correct": false },
+        { "text": "Strength", "correct": false },
+        { "text": "Health", "correct": false }
+      ]
+    },
+    {
+      "id": 7,
+      "question": "What is the correct Sanskrit word for 'Time'?",
+      "answers": [
+        { "text": "समय", "correct": true },
+        { "text": "कर्म", "correct": false },
+        { "text": "मन्त्र", "correct": false },
+        { "text": "युग", "correct": false }
+      ]
+    },
+    {
+      "id": 8,
+      "question": "What is the Sanskrit word for 'Universe'?",
+      "answers": [
+        { "text": "ब्रह्माण्ड", "correct": true },
+        { "text": "विष्णु", "correct": false },
+        { "text": "मन्त्र", "correct": false },
+        { "text": "धर्मः", "correct": false }
+      ]
+    },
+    {
+      "id": 9,
+      "question": "Which is the first व्यञ्जन 'Vyanjan' (consonant) in Sanskrit?",
+      "answers": [
+        { "text": "क", "correct": true },
+        { "text": "ग", "correct": false },
+        { "text": "त", "correct": false },
+        { "text": "भ", "correct": false }
+      ]
+    },
+    {
+      "id": 10,
+      "question": "What does कर्म 'Karma' mean in Sanskrit?",
+      "answers": [
+        { "text": "Action", "correct": true },
+        { "text": "Destiny", "correct": false },
+        { "text": "Fate", "correct": false },
+        { "text": "Religion", "correct": false }
+      ]
+    },
+    {
+      "id": 11,
+      "question": "How many स्वराः 'Swara' (vowels) are there in Sanskrit?",
+      "answers": [
+        { "text": "10", "correct": false },
+        { "text": "12", "correct": false },
+        { "text": "13", "correct": true },
+        { "text": "14", "correct": false }
+      ]
+    },
+    {
+      "id": 12,
+      "question": "What is the correct translation for धर्मः 'Dharma'?",
+      "answers": [
+        { "text": "Rights", "correct": false },
+        { "text": "Righteousness", "correct": true },
+        { "text": "Duty", "correct": true },
+        { "text": "Wealth", "correct": false }
+      ]
+    },
+    {
+      "id": 13,
+      "question": "What is the meaning of सत्यम शिवम् सुंदरम 'Satyam Shivam Sundaram'?",
+      "answers": [
+        { "text": "Truth, Beauty, Divinity", "correct": true },
+        { "text": "Peace, Love, Happiness", "correct": false },
+        { "text": "Health, Wealth, Wisdom", "correct": false },
+        { "text": "Courage, Honor, Strength", "correct": false }
+      ]
+    },
+    {
+      "id": 14,
+      "question": "Which of the following is the correct transliteration of 'माता'?",
+      "answers": [
+        { "text": "पिता", "correct": false },
+        { "text": "माता", "correct": true },
+        { "text": "भ्राता", "correct": false },
+        { "text": "पुत्र", "correct": false }
+      ]
+    },
+    {
+      "id": 15,
+      "question": "What does अहं ब्रह्मास्मि 'Aham Brahmasmi' mean?",
+      "answers": [
+        { "text": "I am God", "correct": false },
+        { "text": "I am the Universe", "correct": true },
+        { "text": "I am Love", "correct": false },
+        { "text": "I am Peace", "correct": false }
+      ]
+    }
+  ]
+  
