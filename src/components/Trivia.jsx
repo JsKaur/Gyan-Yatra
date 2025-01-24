@@ -1,20 +1,38 @@
 import React from 'react';
 import {useState, useEffect} from 'react';
 
-export default function Trivia({data, questionNumber, setQuestionNumber, setTimeOut}) {
+export default function Trivia({data, questionNumber, setQuestionNumber, setStop}) {
   const [question, setQuestion] = useState(null);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [className, setClassName]=useState("answer");
 
-  const handleClick = (a) => {
-    setSelectedAnswer(a);
-    setClassName("answer active");
-  }
+  const delay=(duration,callback)=>{
+    setTimeout(()=>{
+      callback();
+    
+  },duration);
+};
 
-  useEffect(() => {
+const handleClick = (a) => {
+  setSelectedAnswer(a);
+  setClassName("answer active");
+  delay(3000, () =>
+    setClassName(a.correct ? "answer correct" : "answer wrong")
+  );
 
-    setQuestion(data[questionNumber - 1]);
-  },[questionNumber, data]);
+  delay(6000, () => {
+    if (a.correct) {
+      setQuestionNumber((prev) => prev + 1);
+      setSelectedAnswer(null);
+    } else {
+      setStop(true);
+    }
+  });
+};
+
+useEffect(() => {
+  setQuestion(data[questionNumber - 1]);
+}, [questionNumber, data]);
 
 
   return (

@@ -5,7 +5,9 @@ import data from "./data.json";
 
 function App() {
   const [questionNumber, setQuestionNumber] = useState(1);
-  const [timeOut, setTimeOut]=useState(false);
+  const [earned, setEarned]=useState("$0");
+  // const [timeOut, setTimeOut]=useState(false);
+  const [stop, setStop]=useState(false);
 
   const moneyPyramid=[
     {id:1, amount:"$100"},
@@ -28,16 +30,26 @@ function App() {
     <>
     <div className="app">
       <div className="main">
+        {stop ? (
+          <h1>You earned: {earned} </h1>) : ( 
+          <>
         <div className="top">
           <div className="timer">30</div>
         </div>
-        <div className="bottom"><Trivia data={data}
-              questionNumber={questionNumber}
-              setQuestionNumber={setQuestionNumber}
-              setTimeOut={setTimeOut}/></div>
+        <div className="bottom">
+          <Trivia 
+            data={data}
+            questionNumber={questionNumber}
+            setQuestionNumber={setQuestionNumber}
+            setStop={setStop}
+          />
+        </div>
+        </>
+        )}
       </div>
-
-
+       
+      
+      
       <div className="pyramid">
         <ul className="moneyList">
         {moneyPyramid.map((m)=>(
