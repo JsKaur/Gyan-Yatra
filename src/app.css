@@ -68,6 +68,15 @@
     animation:correct 3s ease forwards;
 
 }
+
+.endText{
+    position:relative;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    margin:auto;
+}
 @keyframes correct{
     0%,22%,42%{
         background: rgb(40, 40, 156);

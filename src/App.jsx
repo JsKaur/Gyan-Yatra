@@ -1,5 +1,5 @@
 import "./app.css";
-import {useState} from "react";
+import {useEffect, useState, useMemo} from "react";
 import Trivia from "./components/Trivia";
 import data from "./data.json";
 
@@ -9,8 +9,8 @@ function App() {
   // const [timeOut, setTimeOut]=useState(false);
   const [stop, setStop]=useState(false);
 
-  const moneyPyramid=[
-    {id:1, amount:"$100"},
+const moneyPyramid= useMemo(()=> 
+  [{id:1, amount:"$100"},
     {id:2, amount:"$200"},
     {id:3, amount:"$300"},
     {id:4, amount:"$500"},
@@ -25,13 +25,24 @@ function App() {
     {id:13, amount:"$250000"},
     {id:14, amount:"$500000"},
     {id:15, amount:"$1000000"}
-  ].reverse();
+  ].reverse(), 
+  []
+);
+  
+
+  useEffect(()=>{
+    if(questionNumber>1){
+      setEarned(moneyPyramid.find((m)=>m.id===questionNumber-1).amount);
+    }
+  },[moneyPyramid, questionNumber]);
+
+
   return (
     <>
     <div className="app">
       <div className="main">
         {stop ? (
-          <h1>You earned: {earned} </h1>) : ( 
+          <h1 className="endText">You earned: {earned} </h1>) : ( 
           <>
         <div className="top">
           <div className="timer">30</div>
