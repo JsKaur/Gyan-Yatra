@@ -2,6 +2,7 @@ import "./app.css";
 import {useEffect, useState, useMemo} from "react";
 import Trivia from "./components/Trivia";
 import data from "./data.json";
+import Timer from "./components/Timer";
 
 function App() {
   const [questionNumber, setQuestionNumber] = useState(1);
@@ -45,7 +46,7 @@ const moneyPyramid= useMemo(()=>
           <h1 className="endText">You earned: {earned} </h1>) : ( 
           <>
         <div className="top">
-          <div className="timer">30</div>
+          <div className="timer"><Timer setStop={setStop} questionNumber={questionNumber}/></div>
         </div>
         <div className="bottom">
           <Trivia 
