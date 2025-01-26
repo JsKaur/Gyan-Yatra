@@ -3,9 +3,11 @@ import {useEffect, useState, useMemo} from "react";
 import Trivia from "./components/Trivia";
 import data from "./data.json";
 import Timer from "./components/Timer";
+import Start from "./components/Start";
 
 function App() {
   const [questionNumber, setQuestionNumber] = useState(1);
+  const [username, setUsername]=useState(null);
   const [earned, setEarned]=useState("$0");
   // const [timeOut, setTimeOut]=useState(false);
   const [stop, setStop]=useState(false);
@@ -41,7 +43,8 @@ const moneyPyramid= useMemo(()=>
   return (
     <>
     <div className="app">
-      <div className="main">
+      {username ? (<>
+        <div className="main">
         {stop ? (
           <h1 className="endText">You earned: {earned} </h1>) : ( 
           <>
@@ -59,9 +62,6 @@ const moneyPyramid= useMemo(()=>
         </>
         )}
       </div>
-       
-      
-      
       <div className="pyramid">
         <ul className="moneyList">
         {moneyPyramid.map((m)=>(
@@ -74,7 +74,15 @@ const moneyPyramid= useMemo(()=>
         
         </ul>
       </div>
-    </div>
+    
+    
+      </>
+      ):<Start setUsername={setUsername}/>}
+      
+       </div>
+      
+      
+    
     </>
   );
 }
