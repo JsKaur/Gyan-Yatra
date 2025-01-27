@@ -115,7 +115,7 @@
       "answers": [
         { "text": "Rights", "correct": false },
         { "text": "Righteousness", "correct": true },
-        { "text": "Duty", "correct": true },
+        { "text": "Perception", "correct": false },
         { "text": "Wealth", "correct": false }
       ]
     },
@@ -131,12 +131,12 @@
     },
     {
       "id": 14,
-      "question": "Which of the following is the correct transliteration of 'माता'?",
+      "question": "Which of the following is the correct word of 'माता'?",
       "answers": [
-        { "text": "पिता", "correct": false },
-        { "text": "माता", "correct": true },
-        { "text": "भ्राता", "correct": false },
-        { "text": "पुत्र", "correct": false }
+        { "text": "Father", "correct": false },
+        { "text": "Mother", "correct": true },
+        { "text": "Brother", "correct": false },
+        { "text": "Son", "correct": false }
       ]
     },
     {

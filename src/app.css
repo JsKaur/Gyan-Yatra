@@ -155,7 +155,7 @@
 
 .startPage{
 
-    margin: 0;
+    margin-left: 13%;
     padding: 0;
     text-align: center;
     display: flex;
@@ -213,6 +213,7 @@
 .startButton{
 
     padding: 10px 20px;
+    margin:20px;
     font-size: 1rem;
     font-weight: bold;
     background: linear-gradient(135deg, #ff8c00, #ff4500);
@@ -235,19 +236,19 @@
     transform: scale(0.95);
 }
 
-ul {
+.welcome ul {
     padding: 20px;
     border-radius: 10px;
-    
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); 
     animation: slideIn 1s ease-out;
 }
 
 
 
-li {
+.welcome li {
     font-size: 1rem;
     margin: 10px 0;
+    list-style-type: none;
 }
 
 
