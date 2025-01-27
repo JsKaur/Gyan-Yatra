@@ -13,6 +13,8 @@ export default function Trivia({
   const [question, setQuestion] = useState(null);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [className, setClassName] = useState("answer");
+  const [lefeline, setLifeline] = useState(true);
+
   const [letsPlay] = useSound(play);
   const [correctAnswer] = useSound(correct);
   const [wrongAnswer] = useSound(wrong);
@@ -37,9 +39,7 @@ export default function Trivia({
     delay(2000, () => {
       setClassName(a.correct ? "answer correct" : "answer wrong");
     });
-    
 
-    
       delay(5000, () => {
       if (a.correct) {
         correctAnswer();
@@ -55,8 +55,25 @@ export default function Trivia({
       }
       })
   };
+
+  const handleFifty = () => {
+    console.log("50-50");
+  };
+  const handleTimes = () => {
+    console.log("Times");
+  }
+
+  const handleExpert = () => {
+    console.log("Expert");
+  }
+  
   return (
     <div className="trivia">
+      <div className="lifelines">
+        <img src="./assets/50.png" onClick={handleFifty} alt="" className="lifeline" />
+        <img src="./assets/times2.jpg"  onClick={handleTimes} alt="" className="lifeline" />
+        <img src="./assets/expert.jpg"  onClick={handleExpert} alt="" className="lifeline" />
+      </div>
       <div className="question">{question?.question}</div>
       <div className="answers">
         {question?.answers.map((a) => (

@@ -22,7 +22,7 @@ export default function Start({ setUsername }) {
     return (
         <div className="startPage">
             <h1>Who wants to be a Millionaire while learning Sanskrit?</h1>
-
+            
             {!showWelcome ? (
                 <div className="start">
                     <input
