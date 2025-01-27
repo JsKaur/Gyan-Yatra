@@ -46,7 +46,12 @@ const moneyPyramid= useMemo(()=>
       {username ? (<>
         <div className="main">
         {stop ? (
-          <h1 className="endText">You earned: {earned} </h1>) : ( 
+          <div className="end">
+          <h1 className="endText">You earned: {earned} </h1>
+          <button className="endButton" onClick={()=>setStop(false)}>Play Again</button>
+          </div>)
+          
+           : ( 
           <>
         <div className="top">
           <div className="timer"><Timer setStop={setStop} questionNumber={questionNumber}/></div>

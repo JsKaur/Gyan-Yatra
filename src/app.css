@@ -69,13 +69,33 @@
 
 }
 
-.endText{
+.end{
     position:relative;
     top:0;
     bottom:0;
     left:0;
     right:0;
     margin:auto;
+}
+
+.endButton{
+    padding: 10px 20px;
+    margin:20px;
+    font-size: 1rem;
+    font-weight: bold;
+    background: linear-gradient(135deg, #ff8c00, #ff4500);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+
+.endButton:hover {
+    /* background: linear-gradient(135deg, #ff4500, #ff8c00); */
+    transform: scale(1.1);
+    box-shadow: 0 4px 15px rgba(246, 242, 122, 0.7);
 }
 @keyframes correct{
     0%,22%,42%{
