@@ -9,10 +9,8 @@ function App() {
   const [questionNumber, setQuestionNumber] = useState(1);
   const [username, setUsername] = useState(null);
   const [earned, setEarned] = useState("$0");
-  // const [timeOut, setTimeOut]=useState(false);
   const [stop, setStop] = useState(false);
-
-  
+  const [timeModifier, setTimeModifier] = useState(40);
 
   const moneyPyramid = useMemo(
     () =>
@@ -42,66 +40,73 @@ function App() {
     }
   }, [moneyPyramid, questionNumber]);
 
+  const handleEnd = () => {
+    setStop(false);
+    setQuestionNumber(1);
+    setEarned("$0");
+  };
+
   return (
-    <>
-      <div className="app">
-        {username ? (
-          <>
-            <div className="main">
-              {stop ? (
-                <div className="end">
-                  <h1 className="endText">You earned: {earned} </h1>
-                  <button className="endButton" onClick={() => setStop(false)}>
-                    Play Again
-                  </button>
-                </div>
-              ) : (
-                <>
-                  <div className="top">
-                    <div className="timer">
-                      <Timer
-                        setStop={setStop}
-                        questionNumber={questionNumber}
-                      />
-                    </div>
-                  </div>
-                  <div className="bottom">
-                    <Trivia
-                      data={data}
-                      questionNumber={questionNumber}
-                      setQuestionNumber={setQuestionNumber}
+    <div className="app">
+      {username ? (
+        <>
+          <div className="main">
+            {stop ? (
+              <div className="end">
+                <h1 className="endText">You earned: {earned} </h1>
+                <button className="endButton" onClick={handleEnd}>
+                  Play Again
+                </button>
+              </div>
+            ) : (
+              <>
+                <div className="top">
+                  <div className="timer">
+                    <Timer
                       setStop={setStop}
+                      questionNumber={questionNumber}
+                      timeModifier={timeModifier}  // Corrected variable name
+                      setTimeModifier={setTimeModifier}
                     />
                   </div>
-                </>
-              )}
-            </div>
-
-            <div className="pyramid">
-            {!stop && (
-                <ul className="moneyList">
-                  {moneyPyramid.map((m) => (
-                    <li
-                      className={
-                        questionNumber === m.id
-                          ? "moneyListItem active"
-                          : "moneyListItem"
-                      }
-                      key={m.id}
-                    >
-                      <span className="listNumber">{m.id}</span>
-                      <span className="money">{m.amount}</span>
-                    </li>
-                  ))}
-                </ul>
+                </div>
+                <div className="bottom">
+                  <Trivia
+                    data={data}
+                    questionNumber={questionNumber}
+                    setQuestionNumber={setQuestionNumber}
+                    setStop={setStop}
+                    setTimeModifier={setTimeModifier}
+                  />
+                </div>
+              </>
             )}
-            </div>
-          </>
-        ) : (
-          <Start setUsername={setUsername} />
-        )}
-      </div>
-    </>
+          </div>
+
+          <div className="pyramid">
+            {!stop && (
+              <ul className="moneyList">
+                {moneyPyramid.map((m) => (
+                  <li
+                    className={
+                      questionNumber === m.id
+                        ? "moneyListItem active"
+                        : "moneyListItem"
+                    }
+                    key={m.id}
+                  >
+                    <span className="listNumber">{m.id}</span>
+                    <span className="money">{m.amount}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        </>
+      ) : (
+        <Start setUsername={setUsername} />
+      )}
+    </div>
   );
 }
 

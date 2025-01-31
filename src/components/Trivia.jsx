@@ -4,16 +4,22 @@ import play from "../assets/play.mp3";
 import correct from "../assets/correct.mp3";
 import wrong from "../assets/wrong.mp3";
 
+import fifty from "../assets/50.png";
+import times from "../assets/times2.jpg";
+
+
 export default function Trivia({
   data,
   questionNumber,
   setQuestionNumber,
   setStop,
+  setTimeModifier, // <-- Pass time modifier function from Timer
 }) {
   const [question, setQuestion] = useState(null);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [className, setClassName] = useState("answer");
-  const [lefeline, setLifeline] = useState(true);
+  const [lifelineUsed, setLifelineUsed] = useState({ fifty: false, times: false });
+  const [hiddenAnswers, setHiddenAnswers] = useState([]); // To track hidden answers
 
   const [letsPlay] = useSound(play);
   const [correctAnswer] = useSound(correct);
@@ -25,6 +31,7 @@ export default function Trivia({
 
   useEffect(() => {
     setQuestion(data[questionNumber - 1]);
+    setHiddenAnswers([]); // Reset hidden answers when question changes
   }, [data, questionNumber]);
 
   const delay = (duration, callback) => {
@@ -34,13 +41,14 @@ export default function Trivia({
   };
 
   const handleClick = (a) => {
+    if (selectedAnswer) return;
     setSelectedAnswer(a);
     setClassName("answer active");
     delay(2000, () => {
       setClassName(a.correct ? "answer correct" : "answer wrong");
     });
 
-      delay(5000, () => {
+    delay(5000, () => {
       if (a.correct) {
         correctAnswer();
         delay(1000, () => {
@@ -53,33 +61,47 @@ export default function Trivia({
           setStop(true);
         });
       }
-      })
+    });
   };
 
   const handleFifty = () => {
-    console.log("50-50");
-  };
-  const handleTimes = () => {
-    console.log("Times");
-  }
+    if (lifelineUsed.fifty) return;
+    setLifelineUsed((prev) => ({ ...prev, fifty: true }));
 
-  const handleExpert = () => {
-    console.log("Expert");
-  }
+    const incorrectAnswers = question.answers.filter((a) => !a.correct);
+    const answersToHide = incorrectAnswers.slice(0, 2); // Hide two incorrect answers
+    setHiddenAnswers(answersToHide);
+  };
+
+  // const handleTimes = () => {
+  //   if (lifelineUsed.times) return;
+  //   setLifelineUsed((prev) => ({ ...prev, times: true }));
+  //   setTimeModifier(80); // This should be updating the correct state
+  //   // Update timer to 80 seconds
+  // };
+
+  const handleTimes = () => {
+    setTimeModifier((prev) => prev * 2); // Correct function usage
+  };
   
+
+  
+
   return (
     <div className="trivia">
       <div className="lifelines">
-        <img src="./assets/50.png" onClick={handleFifty} alt="" className="lifeline" />
-        <img src="./assets/times2.jpg"  onClick={handleTimes} alt="" className="lifeline" />
-        <img src="./assets/expert.jpg"  onClick={handleExpert} alt="" className="lifeline" />
+        <img src={fifty} onClick={handleFifty} alt="50-50" className={`lifeline ${lifelineUsed.fifty ? "used" : ""}`} />
+        <img src={times} onClick={handleTimes} alt="Double Time" className={`lifeline ${lifelineUsed.times ? "used" : ""}`} />
+        
       </div>
       <div className="question">{question?.question}</div>
       <div className="answers">
-        {question?.answers.map((a) => (
+        {question?.answers.map((a, index) => (
           <div
+            key={index}
             className={selectedAnswer === a ? className : "answer"}
             onClick={() => !selectedAnswer && handleClick(a)}
+            style={{ visibility: hiddenAnswers.includes(a) ? "hidden" : "visible" }} // Hide answers
           >
             {a.text}
           </div>
