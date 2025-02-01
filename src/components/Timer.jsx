@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 export default function Timer({ setStop, questionNumber, timeModifier }) {
-    const [timer, setTimer] = useState(40); // Default to 40 if undefined
+    const [timer, setTimer] = useState(40); 
 
 
   useEffect(() => {
@@ -13,7 +13,7 @@ export default function Timer({ setStop, questionNumber, timeModifier }) {
   }, [setStop, timer]);
 
   useEffect(() => {
-    setTimer(timeModifier); // Set timer based on lifeline
+    setTimer(timeModifier); 
   }, [questionNumber, timeModifier]);
 
   return timer;

@@ -44,6 +44,7 @@ export default function Start({ setUsername }) {
                         <li><strong><i>Time Limit:</i></strong> You have 40 seconds to answer each question.</li>
                         <li><strong><i>Earning Money:</i></strong> Each question is associated with a specific monetary value. The amount of money earned increases as you progress to the next question.</li>
                         <li><strong><i>Answering Questions:</i></strong> For each question, 4 answer options will be displayed. Click on the option you think is correct.</li>
+                        <li><strong><i>Lifelines:</i></strong>You have 2 lifelines to help you. 50:50 will delete two wrong options and times 2 will double the time you get to answer the question.</li>
                         <li><strong><i>Game Progression:</i></strong> If you select the correct answer, you advance to the next question. If your answer is incorrect, the game ends, and your total winnings will be displayed.</li>
                         <li><strong><i>Winning the Game:</i></strong> Successfully answer questions correctly to win the maximum prize.</li>
                         <li><strong><i>Enjoy the Challenge:</i></strong> Test your knowledge of Sanskrit and see how far you can go!</li>

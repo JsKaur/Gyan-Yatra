@@ -13,7 +13,7 @@ export default function Trivia({
   questionNumber,
   setQuestionNumber,
   setStop,
-  setTimeModifier, // <-- Pass time modifier function from Timer
+  setTimeModifier, 
 }) {
   const [question, setQuestion] = useState(null);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
@@ -31,9 +31,16 @@ export default function Trivia({
 
   useEffect(() => {
     setQuestion(data[questionNumber - 1]);
-    setHiddenAnswers([]); // Reset hidden answers when question changes
+    setHiddenAnswers([]); 
   }, [data, questionNumber]);
 
+
+  useEffect(() => {
+    if (questionNumber > 15) {  // If all questions are answered
+      setStop(true);
+    }
+  }, [questionNumber]);
+  
   const delay = (duration, callback) => {
     setTimeout(() => {
       callback();
@@ -69,29 +76,25 @@ export default function Trivia({
     setLifelineUsed((prev) => ({ ...prev, fifty: true }));
 
     const incorrectAnswers = question.answers.filter((a) => !a.correct);
-    const answersToHide = incorrectAnswers.slice(0, 2); // Hide two incorrect answers
+    const answersToHide = incorrectAnswers.slice(0, 2); 
     setHiddenAnswers(answersToHide);
   };
 
-  // const handleTimes = () => {
-  //   if (lifelineUsed.times) return;
-  //   setLifelineUsed((prev) => ({ ...prev, times: true }));
-  //   setTimeModifier(80); // This should be updating the correct state
-  //   // Update timer to 80 seconds
-  // };
-
+  
   const handleTimes = () => {
-    setTimeModifier((prev) => prev * 2); // Correct function usage
+    if (lifelineUsed.times) return; 
+  setLifelineUsed((prev) => ({ ...prev, times: true }));
+    setTimeModifier((prev) => prev * 2); 
   };
   
-
-  
-
   return (
     <div className="trivia">
       <div className="lifelines">
-        <img src={fifty} onClick={handleFifty} alt="50-50" className={`lifeline ${lifelineUsed.fifty ? "used" : ""}`} />
-        <img src={times} onClick={handleTimes} alt="Double Time" className={`lifeline ${lifelineUsed.times ? "used" : ""}`} />
+      {!lifelineUsed.fifty && (
+        <img src={fifty} onClick={handleFifty} alt="50-50" className={`lifeline ${lifelineUsed.fifty ? "used" : ""}`} /> )}
+
+{!lifelineUsed.times && (
+        <img src={times} onClick={handleTimes} alt="Double Time" className={`lifeline ${lifelineUsed.times ? "used" : ""}`} />)}
         
       </div>
       <div className="question">{question?.question}</div>

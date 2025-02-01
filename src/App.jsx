@@ -1,5 +1,6 @@
 import "./app.css";
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo, useRef } from "react";
+import { Fireworks } from 'fireworks-js';
 import Trivia from "./components/Trivia";
 import data from "./data.json";
 import Timer from "./components/Timer";
@@ -11,6 +12,7 @@ function App() {
   const [earned, setEarned] = useState("$0");
   const [stop, setStop] = useState(false);
   const [timeModifier, setTimeModifier] = useState(40);
+  const fireworksRef = useRef(null);
 
   const moneyPyramid = useMemo(
     () =>
@@ -40,6 +42,22 @@ function App() {
     }
   }, [moneyPyramid, questionNumber]);
 
+  useEffect(() => {
+  setTimeModifier(40); // Reset timer back to default 40 sec on each new question
+}, [questionNumber]);
+
+useEffect(() => {
+  if (stop) {
+    const fireworks = new Fireworks(fireworksRef.current);
+    fireworks.start();
+    
+    setTimeout(() => {
+      fireworks.stop();
+    }, 5000); // Stops after 5 seconds
+  }
+}, [stop]);
+
+
   const handleEnd = () => {
     setStop(false);
     setQuestionNumber(1);
@@ -53,6 +71,7 @@ function App() {
           <div className="main">
             {stop ? (
               <div className="end">
+                <div ref={fireworksRef} className="fireworks-container"></div>
                 <h1 className="endText">You earned: {earned} </h1>
                 <button className="endButton" onClick={handleEnd}>
                   Play Again
