@@ -82,6 +82,16 @@
     
 }
 
+.end {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Ensure the end screen fills the page */
+    width: 100vw;
+  }
+
 .endButton{
     padding: 10px 20px;
     margin:20px;
@@ -321,3 +331,16 @@
     height:100px;
     margin:1.2rem;
 }
+
+.fireworks-container {
+    position: fixed; /* Fix position to prevent scrollbar */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none; /* Ensures it doesn’t block clicks */
+    z-index: 9999; /* Ensure it stays above everything */
+  }
+  
+  
+  

@@ -1,10 +1,10 @@
-import "./app.css";
 import { useEffect, useState, useMemo, useRef } from "react";
-import { Fireworks } from 'fireworks-js';
+import { Fireworks } from "fireworks-js";
 import Trivia from "./components/Trivia";
 import data from "./data.json";
 import Timer from "./components/Timer";
 import Start from "./components/Start";
+import "./app.css";
 
 function App() {
   const [questionNumber, setQuestionNumber] = useState(1);
@@ -13,6 +13,7 @@ function App() {
   const [stop, setStop] = useState(false);
   const [timeModifier, setTimeModifier] = useState(40);
   const fireworksRef = useRef(null);
+  const fireworksInstance = useRef(null); 
 
   const moneyPyramid = useMemo(
     () =>
@@ -43,25 +44,43 @@ function App() {
   }, [moneyPyramid, questionNumber]);
 
   useEffect(() => {
-  setTimeModifier(40); // Reset timer back to default 40 sec on each new question
-}, [questionNumber]);
+    setTimeModifier(40); // Reset timer back to default 40 sec on each new question
+  }, [questionNumber]);
 
-useEffect(() => {
-  if (stop) {
-    const fireworks = new Fireworks(fireworksRef.current);
-    fireworks.start();
-    
-    setTimeout(() => {
-      fireworks.stop();
-    }, 5000); // Stops after 5 seconds
-  }
-}, [stop]);
+  
 
+  useEffect(() => {
+    if (stop) {
+      const fireworks = new Fireworks(fireworksRef.current);
+      fireworks.start();
+  
+      setTimeout(() => {
+        fireworks.stop();
+      }, 5000);
+    } else {
+      
+      if (fireworksRef.current) {
+        fireworksRef.current.innerHTML = "";
+      }
+    }
+  }, [stop]);
+  
 
   const handleEnd = () => {
     setStop(false);
     setQuestionNumber(1);
     setEarned("$0");
+
+   
+    if (fireworksInstance.current) {
+      fireworksInstance.current.stop();
+      fireworksInstance.current = null;
+    }
+
+  
+    setTimeout(() => {
+      setTimeModifier(40); 
+    }, 10);
   };
 
   return (
@@ -84,7 +103,7 @@ useEffect(() => {
                     <Timer
                       setStop={setStop}
                       questionNumber={questionNumber}
-                      timeModifier={timeModifier}  // Corrected variable name
+                      timeModifier={timeModifier}
                       setTimeModifier={setTimeModifier}
                     />
                   </div>
