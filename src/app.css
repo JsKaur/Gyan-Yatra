@@ -72,15 +72,7 @@
 
 }
 
-.end{
-    position:relative;
-    top:0;
-    bottom:0;
-    left:0;
-    right:0;
-    margin:auto;
-    
-}
+
 
 .end {
     position: relative;
@@ -88,8 +80,9 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh; /* Ensure the end screen fills the page */
+    height: 100vh; 
     width: 100vw;
+    background:linear-gradient(#100241, black) !important;
   }
 
 .endButton{
@@ -105,15 +98,11 @@
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
 }
 
-.fireworks-container {
-    position: absolute;
-    pointer-events: none; 
-    z-index: 10; 
-  }
+
   
 
 .endButton:hover {
-    /* background: linear-gradient(135deg, #ff4500, #ff8c00); */
+   
     transform: scale(1.1);
     box-shadow: 0 4px 15px rgba(246, 242, 122, 0.7);
 }
@@ -160,7 +149,24 @@
     top:50%;
     left:50%;
     transform: translate(-50%, -50%);
+    z-index: 1000;
 }
+.fireworks-container {
+    position: absolute;
+    pointer-events: none; 
+    z-index: 10; 
+  }
+
+.fireworks-container {
+    position: fixed; /* Fix position to prevent scrollbar */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none; /* Ensures it doesn’t block clicks */
+    z-index: 500; /* Ensure it stays above everything */
+    overflow: hidden;
+  }
 .pyramid{
     width:25%;
     display:flex;
@@ -332,15 +338,3 @@
     margin:1.2rem;
 }
 
-.fireworks-container {
-    position: fixed; /* Fix position to prevent scrollbar */
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    pointer-events: none; /* Ensures it doesn’t block clicks */
-    z-index: 9999; /* Ensure it stays above everything */
-  }
-  
-  
-  

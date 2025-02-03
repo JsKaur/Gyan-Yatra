@@ -1,10 +1,11 @@
-import { useEffect, useState, useMemo, useRef } from "react";
-import { Fireworks } from "fireworks-js";
+import { useEffect, useState, useMemo } from "react";
+import Confetti from "react-confetti";
 import Trivia from "./components/Trivia";
 import data from "./data.json";
 import Timer from "./components/Timer";
 import Start from "./components/Start";
 import "./app.css";
+import { useWindowSize } from "react-use";
 
 function App() {
   const [questionNumber, setQuestionNumber] = useState(1);
@@ -12,8 +13,22 @@ function App() {
   const [earned, setEarned] = useState("$0");
   const [stop, setStop] = useState(false);
   const [timeModifier, setTimeModifier] = useState(40);
-  const fireworksRef = useRef(null);
-  const fireworksInstance = useRef(null); 
+  const { width, height } = useWindowSize(); // Get screen size for confetti
+  const [shuffledQuestions, setShuffledQuestions] = useState([]);
+
+  // Function to shuffle array (Fisher-Yates Shuffle)
+  const shuffleArray = (array) => {
+    let shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+  };
+
+  useEffect(() => {
+    setShuffledQuestions(shuffleArray(data)); // Shuffle questions at the start
+  }, []);
 
   const moneyPyramid = useMemo(
     () =>
@@ -44,42 +59,17 @@ function App() {
   }, [moneyPyramid, questionNumber]);
 
   useEffect(() => {
-    setTimeModifier(40); // Reset timer back to default 40 sec on each new question
+    setTimeModifier(40);
   }, [questionNumber]);
-
-  
-
-  useEffect(() => {
-    if (stop) {
-      const fireworks = new Fireworks(fireworksRef.current);
-      fireworks.start();
-  
-      setTimeout(() => {
-        fireworks.stop();
-      }, 5000);
-    } else {
-      
-      if (fireworksRef.current) {
-        fireworksRef.current.innerHTML = "";
-      }
-    }
-  }, [stop]);
-  
 
   const handleEnd = () => {
     setStop(false);
     setQuestionNumber(1);
     setEarned("$0");
 
-   
-    if (fireworksInstance.current) {
-      fireworksInstance.current.stop();
-      fireworksInstance.current = null;
-    }
-
-  
     setTimeout(() => {
-      setTimeModifier(40); 
+      setTimeModifier(40);
+      setShuffledQuestions(shuffleArray(data)); // Reshuffle questions when restarting
     }, 10);
   };
 
@@ -88,15 +78,16 @@ function App() {
       {username ? (
         <>
           <div className="main">
-            {stop ? (
-              <div className="end">
-                <div ref={fireworksRef} className="fireworks-container"></div>
-                <h1 className="endText">You earned: {earned} </h1>
-                <button className="endButton" onClick={handleEnd}>
-                  Play Again
-                </button>
-              </div>
-            ) : (
+          {stop ? (
+  <div className="end">
+   
+    {earned !== "$0" && <Confetti width={width} height={height} numberOfPieces={500} />}
+    <h1 className="endText">You earned: {earned} </h1>
+    <button className="endButton" onClick={handleEnd}>
+      Play Again
+    </button>
+  </div>
+) : (
               <>
                 <div className="top">
                   <div className="timer">
@@ -110,7 +101,7 @@ function App() {
                 </div>
                 <div className="bottom">
                   <Trivia
-                    data={data}
+                    data={shuffledQuestions} // Use shuffled questions
                     questionNumber={questionNumber}
                     setQuestionNumber={setQuestionNumber}
                     setStop={setStop}
