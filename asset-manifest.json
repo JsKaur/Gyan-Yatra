@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/Gyan-Yatra/static/css/main.20beb911.css",
+    "main.js": "/Gyan-Yatra/static/js/main.33c29ed1.js",
+    "static/js/885.339fcfbf.chunk.js": "/Gyan-Yatra/static/js/885.339fcfbf.chunk.js",
+    "static/media/50.png": "/Gyan-Yatra/static/media/50.06f0f9cc936ac79bc398.png",
+    "static/media/play.mp3": "/Gyan-Yatra/static/media/play.8e5f6d1d81d4e1414b95.mp3",
+    "static/media/correct.mp3": "/Gyan-Yatra/static/media/correct.160572d72c858155072e.mp3",
+    "static/media/background.jpeg": "/Gyan-Yatra/static/media/background.ea209a1992d089fab9b4.jpeg",
+    "static/media/wrong.mp3": "/Gyan-Yatra/static/media/wrong.e946821894ae9b0a0d6f.mp3",
+    "index.html": "/Gyan-Yatra/index.html",
+    "main.20beb911.css.map": "/Gyan-Yatra/static/css/main.20beb911.css.map",
+    "main.33c29ed1.js.map": "/Gyan-Yatra/static/js/main.33c29ed1.js.map",
+    "885.339fcfbf.chunk.js.map": "/Gyan-Yatra/static/js/885.339fcfbf.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.20beb911.css",
+    "static/js/main.33c29ed1.js"
+  ]
+}
